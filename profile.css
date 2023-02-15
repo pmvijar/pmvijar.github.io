@@ -8,9 +8,17 @@
 
 .Info{
     font: Times;
+    text-align: center;
 }
 
 .favorites{
     border-radius: 25px;
+    background: #00eb14;
+    text-align: center;
+}
 
+.morethings{
+    border-radius: 25px;
+    background: #ff0000;
+    text-align: center;
 }
