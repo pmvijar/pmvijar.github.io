@@ -2,26 +2,600 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github Profile</title>
-    <link rel="stylesheet" href="profile.css">
+    <title>José Rizal's Legacy and Remembrance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f1e8;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(139, 90, 43, 0.03) 10px,
+                    rgba(139, 90, 43, 0.03) 20px
+                ),
+                radial-gradient(
+                    ellipse at top,
+                    rgba(139, 90, 43, 0.05) 0%,
+                    transparent 70%
+                );
+            min-height: 100vh;
+            color: #3a2317;
+            zoom: 0.91;
+            transform-origin: top left;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8b5a2b 0%, #a0522d 50%, #8b4513 100%);
+            color: #f5f1e8;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .context-section {
+            background: #e8dcc6;
+            border: 3px solid #8b5a2b;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .context-section::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #8b5a2b, #a0522d, #8b4513);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .context-section h2 {
+            color: #8b4513;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .context-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .context-item {
+            background: #f5f1e8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #a0522d;
+        }
+
+        .context-item h3 {
+            color: #8b4513;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .context-item p {
+            line-height: 1.6;
+            color: #5a4a3a;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .category-panel {
+            background: #e8dcc6;
+            border: 3px solid #8b5a2b;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(139, 90, 43, 0.05) 50px,
+                    rgba(139, 90, 43, 0.05) 100px
+                );
+            pointer-events: none;
+        }
+
+        .category-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+            color: #f5f1e8;
+            padding: 1.5rem;
+            margin: -2rem -2rem 1.5rem -2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .works-list {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .work-item {
+            background: #f5f1e8;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #8b4513;
+            border-radius: 5px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-item::before {
+            content: "📜";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            opacity: 0.2;
+        }
+
+        .work-item:hover {
+            background: #fff;
+            border-left-width: 6px;
+            transform: translateX(5px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .work-title {
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .work-description {
+            font-size: 0.9rem;
+            color: #5a4a3a;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .source-link {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .source-link a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+
+        .source-link a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .decorative-border {
+            border-image: repeating-linear-gradient(
+                45deg,
+                #8b5a2b,
+                #8b5a2b 10px,
+                #a0522d 10px,
+                #a0522d 20px
+            ) 30;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .context-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .historical-note {
+            background: #d4c4b0;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+            font-style: italic;
+            text-align: center;
+            color: #5a4a3a;
+            border: 2px dashed #8b5a2b;
+        }
+    </style>
 </head>
 <body>
-    <div class="personalinfo">
-        <h3 class="Photo">Photo:</h3><img src="2 x 2 .jpg" alt="Profile pic" class="img">
-        <h3 class="Info">NAME: Peter Rafael Vijar</h3>
-        <h3 class="Info">Nickname:Raffy</h3>
+    <div class="header">
+        <h1>José Rizal's Legacy and Remembrance</h1>
+        <h2>The First Filipino (1861-1896)</h2>
+        <h2>National Hero of the Philippines </h2>
+        <div class="floating-note">
+            A collection of the life and works of Rizal in a website
+        </div>
+        <style>
+            .floating-note {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(139, 90, 43, 0.9);
+                color: #f5f1e8;
+                padding: 0.8rem 1.2rem;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-style: italic;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 1000;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255,255,255,0.2);
+                animation: float 3s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateX(-50%) translateY(0px); }
+                50% { transform: translateX(-50%) translateY(-5px); }
+            }
+
+            @media (max-width: 768px) {
+                .floating-note {
+                    bottom: 10px;
+                    font-size: 0.8rem;
+                    padding: 0.6rem 1rem;
+                }
+            }
+        </style>
     </div>
 
-    <div class="favorites">
-        <h5 class="Info">Favorite CMSC Subject so far:CMSC 123</h5>
-        <p>Since I like theories on computer science and it is very challengeing which is dependent in thinking rather than research</p>
-        <h5 class="Info">Favorite GE so far: Arts1</h5>
-        <p>Theres a beauty in the course which separates your senses from everyday seriousness</p>
-        <h5 class="Info">Favorite Programming Language: C</h5>
-        <p>Since it is my most used PL so far</p>
-        <h5 class="Info">Favorite Food: Lechon</h5>
+    <div class="historical-note" style="margin-top: 3rem; font-size: 1.1rem;">
+        As a student, how do I remember and see Rizal nowadays in the 21st century?<br> <br>
+        Through the studying his life and work, his presence is still felt in the Philippines today.
+    </div>
+
+    <div class="container">
+        <div class="context-section">
+            <h2>Historical Context</h2>
+            <div class="context-grid">
+                <div class="context-item">
+                    <h3>🏛️ Cultural & Political Climate</h3>
+                    <p>During Rizal's time, the Philippines was under Spanish colonial rule. The society was stratified, with the Spanish friars and government officials at the top, followed by the principalia (native elite), and the indios (native Filipinos) at the bottom. This oppressive system fueled Rizal's desire for reform through his writings.</p>
+                    <p class="source-link"><a href="https://drive.google.com/file/d/1bbsvNgwL5Gzd8L5IjaB210fJR1pbYBwo/view" target="_blank">📖 Source: The Nineteenth Century Philippine Economy, Society, and the Chinese Mestizos</a></p>
+                </div>
+                <div class="context-item">
+                    <h3>👨‍👩‍👧‍👦 Family & Upbringing</h3>
+                    <p>Born to a prosperous Chinese mestizo family in Calamba, Laguna, Rizal grew up in an environment that valued education and culture. His mother, Teodora Alonso, was his first teacher. The family's wealth allowed him to receive excellent education both in the Philippines and abroad, shaping his worldview and literary prowess.</p>
+                    <p class="source-link"><a href="https://drive.google.com/file/d/1N_TCIE-M7-pD2BrAhvIo25asYlFHg24g/view" target="_blank">📖 Source: The Life of Jose Rizal</a></p>
+                </div>
+                <div class="context-item">
+                    <h3>🏮 Chinese Mestizo Influence</h3>
+                    <p>As a Chinese mestizo, Rizal belonged to a growing middle class that played a crucial role in Philippine society. This group, with their economic power and education, became instrumental in the reform movement. Their unique position allowed them to bridge different cultures and perspectives.</p>
+                    <p class="source-link"><a href="https://drive.google.com/file/d/1N_TCIE-M7-pD2BrAhvIo25asYlFHg24g/view" target="_blank">📖 Source: The Life of Jose Rizal</a></p>
+                </div>
+                <div class="context-item">
+                    <h3>📜 The Rizal Law (RA 1425)</h3>
+                    <p>Enacted in 1956, the Rizal Law mandates the study of Rizal's life and works, particularly his novels Noli Me Tangere and El Filibusterismo, in all schools in the Philippines. This law ensures that Rizal's ideals of nationalism, patriotism, and social justice continue to inspire future generations.</p>
+                    <p class="source-link"><a href="http://officialgazette.gov.ph/1956/06/12/republic-act-no-1425/" target="_blank">📖 Source: Republic Act No. 1425</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="works-grid">
+            <div class="category-panel">
+                <div class="category-header">
+                    <div class="category-icon">📝</div>
+                    <h3>Essays</h3>
+                </div>
+                <ul class="works-list">
+                    <li class="work-item">
+                        <div class="work-title">Brindis Speech (1884)</div>
+                        <div class="work-description">Toast honoring Juan Luna and Felix Hidalgo's victories at the Madrid Exposition</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1tPtV1DPMUINV6xDObHvUp3UyEQWF-VVB/view" target="_blank">📖 Source: Brindis Speech</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">El Amor Patrio (Love of Country)</div>
+                        <div class="work-description">His first article written in Spain, expressing deep love for the Philippines</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1bH0CBs9GGerO9CS5CqryKj27PDR0-fBy/view" target="_blank">📖 Source: El Amor Patrio</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">Sobre La Indolencia De Los Filipinos</div>
+                        <div class="work-description">Refuting Spanish claims of Filipino laziness by analyzing historical and social factors</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1ShOuwnz-Vbczd9EFsG-5vMbTlGaqsCmC/view" target="_blank">📖 Source: Sobre La Indolencia De Los Filipinos</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">Annotations to Morga's 1609 Philippine History</div>
+                        <div class="work-description">Critical annotations proving Filipino civilization existed before Spanish colonization</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1_XWC-v22WCrsNWUs_uU3D0vs_thNkJfn/view" target="_blank">📖 Source: Annotations to Morga's 1609 Philippine History</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">The Philippines A Century Hence</div>
+                        <div class="work-description">Prophetic essay predicting the country's future and eventual independence</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1e-sd86bplImUZEwFT4UvMcC4eQ7Ogcno/view" target="_blank">📖 Source: The Philippines A Century Hence</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">To the Young Women of Malolos</div>
+                        <div class="work-description">Letter encouraging Filipino women to pursue education and fight for their rights</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1H664bnQS0Mf7YL5_b2yvPsi1LRvQKLxF/view" target="_blank">📖 Source: To the Young Women of Malolos</a></p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-panel">
+                <div class="category-header">
+                    <div class="category-icon">📚</div>
+                    <h3>Novels</h3>
+                </div>
+                <ul class="works-list">
+                    <li class="work-item">
+                        <div class="work-title">Noli Me Tangere (Touch Me Not) - 1887</div>
+                        <div class="work-description">Exposé of Spanish colonial abuses through the story of Crisostomo Ibarra, depicting the social cancer afflicting Philippine society</div>
+                        <p class="source-link"><a href="https://www.gutenberg.org/files/6737/6737-h/6737-h.htm" target="_blank">📖 Source: Noli Me Tangere</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">El Filibusterismo (The Reign of Greed) - 1891</div>
+                        <div class="work-description">The darker sequel showing the protagonist's transformation into Simoun, a revolutionary seeking vengeance against the corrupt system</div>
+                        <p class="source-link"><a href="https://www.gutenberg.org/files/10676/10676-h/10676-h.htm" target="_blank">📖 Source: El Filibusterismo</a></p>
+                    </li>
+                </ul>
+                <div class="historical-note">
+                    These novels were instrumental in awakening Filipino nationalism and are considered the most important works in Philippine literature
+                </div>
+            </div>
+
+            <div class="category-panel">
+                <div class="category-header">
+                    <div class="category-icon">🎭</div>
+                    <h3>Poems</h3>
+                </div>
+                <ul class="works-list">
+                    <li class="work-item">
+                        <div class="work-title">Sa Kabataang Pilipino (To The Filipino Youth)</div>
+                        <div class="work-description">Prize-winning poem encouraging youth to use their talents for the nation</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1R2TXBSRovogUgCWOKOcla0KDvXazZS5y/view" target="_blank">📖 Source: A La Juventud Filipina</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">Education Gives Luster to Motherland</div>
+                        <div class="work-description">Emphasizing education as key to national progress and enlightenment</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/17J8_ltnu87IOL10dnCjtlPtu3FSxrTdX/view" target="_blank">📖 Source: Education Gives Luster to Motherland</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">Imno sa Paggawa (Hymn to Labor)</div>
+                        <div class="work-description">Celebrating the dignity of work and its role in nation-building</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/19PcxhbmBvaHTKt2YJDjBM7NiMsd-u2I7/view" target="_blank">📖 Source: Imno sa Paggawa</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">Song of the Wanderer</div>
+                        <div class="work-description">Expressing the longing of an exile for his homeland</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/19PcxhbmBvaHTKt2YJDjBM7NiMsd-u2I7/view" target="_blank">📖 Source: Song of the Wanderer</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">Kundiman</div>
+                        <div class="work-description">Traditional Filipino love song expressing deep patriotic sentiments</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1Vy_WP5Ab3u_rjbgetjmBob6UDzq1_DjI/view" target="_blank">📖 Source: Kundiman</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">To the Flowers of Heidelberg</div>
+                        <div class="work-description">Nostalgic poem written during his stay in Germany, longing for Philippine flowers</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1Vy_WP5Ab3u_rjbgetjmBob6UDzq1_DjI/view" target="_blank">📖 Source: To the Flowers of Heidelberg</a></p>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-title">In Memory of My Town</div>
+                        <div class="work-description">Tribute to his birthplace Calamba, recalling childhood memories</div>
+                        <p class="source-link"><a href="https://drive.google.com/file/d/1Vy_WP5Ab3u_rjbgetjmBob6UDzq1_DjI/view" target="_blank">📖 Source: In Memory of My Town</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="historical-note" style="margin-top: 3rem; font-size: 1.1rem;">
+            "I have always loved my poor country, and I am sure that I shall love her until death."<br>
+            - José Rizal
+        </div>
+
+        <div class="context-section" style="margin-top: 3rem;">
+            <h2>Rizal's Intangible Legacies in the 21st Century</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #5a4a3a; font-style: italic;">
+                How Rizal's revolutionary spirit continues to inspire modern Filipinos
+            </p>
+
+            <div class="context-grid">
+                <div class="context-item">
+                    <h3>📱 Digital Age Activism</h3>
+                    <p>Rizal has transformed into a "virtual mentor" in the digital age, with his digitized works inspiring modern online activism against fake news and cultural dominance. His literary symbols like the "Bapor Tabo" remain relevant for addressing digital echo chambers, while his commitment to truth continues motivating contemporary grassroots movements and social media advocates.</p>
+                    <p class="source-link"><a href="https://www.researchgate.net/publication/376269769_Rizal_in_the_21st_Century_The_Influence_of_His_Literary_Works" target="_blank">📖 Source: ResearchGate - Rizal in the 21st Century</a></p>
+                </div>
+                <div class="context-item">
+                    <h3>🌍 Global Filipino Identity</h3>
+                    <p>Overseas Filipino Workers (OFWs) and diaspora communities embody Rizal's international outlook while maintaining cultural identity. His multilingual abilities and global perspective resonate with today's interconnected Filipinos.</p>
+                    <p class="source-link"><a href="https://sentrorizal.ncca.gov.ph/about/" target="_blank">📖 Source: Sentro Rizal - NCCA</a></p>
+                </div>
+                <div class="context-item">
+                    <h3>💡 Critical Thinking</h3>
+                    <p>In our age of information overload and fake news, Rizal's emphasis on critical analysis and fact-based reasoning guides Filipinos toward truth and informed decision-making.</p>
+                    <p class="source-link"><a href="https://cids.up.edu.ph/wp-content/uploads/2022/03/Rizal-in-the-21st-Century-vol.3-no.1-Jan-March-1999-2.pdf" target="_blank">📖 Source: UP CIDS - Rizal's Relevance</a></p>
+                </div>
+                <div class="context-item">
+                    <h3>⚖️ Continuing Relevance</h3>
+                    <p>From fighting corruption to promoting gender equality, Rizal's core values endure. His moral courage inspires modern whistleblowers, journalists, and activists who risk personal safety for societal good.</p>
+                    <p class="source-link"><a href="https://www.officialgazette.gov.ph/rizal-monument/" target="_blank">📖 Source: Official Gazette - Rizal Monument Centenary</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="works-grid" style="margin-top: 3rem;">
+            <div class="category-panel">
+                <div class="category-header">
+                    <div class="category-icon">🏛️</div>
+                    <h3>Tangible Legacies</h3>
+                </div>
+                <ul class="works-list">
+                    <li class="work-item">
+                        <div class="work-link">
+                            <div class="work-title">Monuments Worldwide</div>
+                            <div class="work-description">From Luneta to statues in Germany, Japan, and the United States</div>
+                            <p class="source-link"><a href="https://rizal.raphaelmarco.com/biography/monuments" target="_blank">📖 Source: Rizal Monuments - Raphael Marco</a></p>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-link">
+                            <div class="work-title">Currency & Commemoratives</div>
+                            <div class="work-description">Featured on the 1-peso coin and various commemorative items</div>
+                            <p class="source-link"><a href="https://www.bsp.gov.ph/Pages/CoinsAndNotes/Coins/NewGenerationCurrencyCoinSeries.aspx" target="_blank">📖 Source: BSP - Philippine Currency</a></p>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-link">
+                            <div class="work-title">Geographic Features</div>
+                            <div class="work-description">Rizal Province, countless streets, plazas, and parks worldwide</div>
+                            <p class="source-link"><a href="https://en.wikipedia.org/wiki/List_of_places_named_after_Jos%C3%A9_Rizal" target="_blank">📖 Source: List of places named after José Rizal</a></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="historical-note" style="margin-top: 3rem; font-size: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            In our digital age, where information spreads instantly and global issues require local action, Rizal's balanced approach of peaceful reform, educational empowerment, and moral leadership provides a blueprint for meaningful change. He reminds us that true patriotism isn't about blind loyalty, but about continuous improvement of our society through personal excellence and civic engagement.
+        </div>
+
+        <div class="context-section" style="margin-top: 3rem;">
+            <h2>Further Reading & Resources of Rizal</h2>
+            <div style="background: #f5f1e8; padding: 2rem; border-radius: 8px; border: 2px solid #a0522d;">
+                <h3 style="color: #8b4513; margin-bottom: 1rem;">Primary Biographical Sources</h3>
+                <div style="margin-left: 2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                    <p style="margin-bottom: 0.5rem;">Guerrero, León María. <em>The First Filipino: A Biography of José Rizal</em>. Manila: National Historical Commission, 1961.</p>
+                    <p style="margin-bottom: 0.5rem;">Ocampo, Ambeth R. <em>Rizal Without the Overcoat: Expanded Edition</em>. Quezon City: Anvil Publishing, 2009. <a href="https://archive.org/details/rizalwithoutover0000ocam" target="_blank">[Internet Archive]</a></p>
+                    <p style="margin-bottom: 0.5rem;">Palma, Rafael. <em>Biografia de Rizal</em>. Manila: National Library, 1949.</p>
+                    <p style="margin-bottom: 0.5rem;">Zaide, Gregorio F., and Sonia M. Zaide. <em>José Rizal: Life, Works and Writings of a Genius</em>. Quezon City: All-Nations Publishing, 2018.</p>
+                </div>
+
+                <h3 style="color: #8b4513; margin-bottom: 1rem;">Academic & Historical Studies</h3>
+                <div style="margin-left: 2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                    <p style="margin-bottom: 0.5rem;">Anderson, Benedict. <em>Imagined Communities: Reflections on the Origin and Spread of Nationalism</em>. London: Verso, 1991.</p>
+                    <p style="margin-bottom: 0.5rem;">Constantino, Renato. <em>The Philippines: A Past Revisited</em>. Quezon City: Tala Publishing, 1975.</p>
+                    <p style="margin-bottom: 0.5rem;">Quibuyen, Floro C. <em>A Nation Aborted: Rizal, American Hegemony, and Philippine Nationalism</em>. Quezon City: Ateneo de Manila University Press, 1999.</p>
+                    <p style="margin-bottom: 0.5rem;">Schumacher, John N. <em>The Propaganda Movement, 1880-1895</em>. Manila: Ateneo de Manila University Press, 1997.</p>
+                </div>
+
+                <h3 style="color: #8b4513; margin-bottom: 1rem;">Contemporary Research</h3>
+                <div style="margin-left: 2rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                    <p style="margin-bottom: 0.5rem;">National Historical Commission of the Philippines. "Rizal's Continuing Relevance." <em>Historical Bulletin</em> 64, no. 1-4 (2020): 45-62. <a href="https://nhcp.gov.ph" target="_blank">[NHCP Website]</a></p>
+                    <p style="margin-bottom: 0.5rem;">Sicat, Gerardo P. "Jose Rizal's Ideals and Ideas." <em>UP School of Economics Per Se</em>, January 2, 2019. <a href="https://serp-p.pids.gov.ph/publication/public/view?slug=rizal-in-the-21st-century-the-relevance-of-his-ideas-and-texts" target="_blank">[PIDS SerP-P]</a></p>
+                    <p style="margin-bottom: 0.5rem;">University of the Philippines Center for Integrative Studies. <em>Rizal in the 21st Century: The Relevance of His Ideas and Texts</em>. Quezon City: UP Press, 2023. <a href="https://cids.up.edu.ph/wp-content/uploads/2022/03/Rizal-in-the-21st-Century-vol.3-no.1-Jan-March-1999-2.pdf" target="_blank">[PDF]</a></p>
+                    <p style="margin-bottom: 0.5rem;">Viray, Joseph Reylan et al. "Jose Rizal: Precursor of Futures Thinking in the Philippines." <em>Journal of Futures Studies</em>, 2024. <a href="https://jfsdigital.org/jose-rizal-precursor-of-futures-thinking-in-the-philippines/" target="_blank">[Full Article]</a></p>
+                </div>
+
+                <h3 style="color: #8b4513; margin-bottom: 1rem;">Digital Resources & Primary Texts</h3>
+                <div style="margin-left: 2rem; line-height: 1.8;">
+                    <p style="margin-bottom: 0.5rem;">Britannica Encyclopedia. "José Rizal Biography." <a href="https://www.britannica.com/biography/Jose-Rizal" target="_blank">[Britannica]</a></p>
+                    <p style="margin-bottom: 0.5rem;">Project Gutenberg. "José Rizal Works Collection." <a href="https://www.gutenberg.org/ebooks/author/2183" target="_blank">[All Works]</a></p>
+                    <p style="margin-bottom: 0.5rem;">— <em>Noli Me Tangere</em> (Tagalog). <a href="https://www.gutenberg.org/ebooks/20228" target="_blank">[Read Online]</a></p>
+                    <p style="margin-bottom: 0.5rem;">— <em>El Filibusterismo</em> (Spanish). <a href="https://www.gutenberg.org/ebooks/30903" target="_blank">[Read Online]</a></p>
+                    <p style="margin-bottom: 0.5rem;">— <em>Ang Filibusterismo</em> (Tagalog). <a href="https://www.gutenberg.org/ebooks/47629" target="_blank">[Read Online]</a></p>
+                    <p style="margin-bottom: 0.5rem;">— <em>The Social Cancer</em> (English translation by Charles Derbyshire). <a href="https://www.gutenberg.org/files/6737/6737-h/6737-h.htm" target="_blank">[Read Online]</a></p>
+                    <p style="margin-bottom: 0.5rem;">— <em>The Philippines A Century Hence</em>. <a href="https://www.gutenberg.org/files/35899/35899-h/35899-h.htm" target="_blank">[Read Online]</a></p>
+                    <p style="margin-bottom: 0.5rem;">NHCP Memory Portal. "Rizal Documents Collection." <a href="https://memory.nhcp.gov.ph/articles/the-jose-rizal-national-centennial-commission-collection-of-the-national-historical-commission-of-the-philippines/" target="_blank">[JRNCC Collection]</a></p>
+                    <p style="margin-bottom: 0.5rem;">Official Gazette. "The Centenary of the Rizal Monument." <a href="https://www.officialgazette.gov.ph/rizal-monument/" target="_blank">[Special Section]</a></p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
